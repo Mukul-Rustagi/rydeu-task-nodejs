@@ -7,7 +7,7 @@ const Pricing = require('./models/pricing');
 
 const app = express();
 // Connect to MongoDB and insert pricing data after successful connection
-mongoose.connect('mongodb://localhost:27017/rydeu', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/rydeu')
   .then(() => {
     console.log('Connected to MongoDB successfully');
 
