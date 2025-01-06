@@ -6,14 +6,6 @@ const errorHandler = require('./middlewares/errorHandler');
 const Pricing = require('./models/pricing');
 
 const app = express();
-
-// Middleware to parse JSON
-app.use(bodyParser.json());
-app.use(errorHandler);
-
-// Routes for ride-related requests
-app.use('/api/ride', rideRoutes);
-
 // Connect to MongoDB and insert pricing data after successful connection
 mongoose.connect('mongodb://localhost:27017/rydeu', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -26,6 +18,12 @@ mongoose.connect('mongodb://localhost:27017/rydeu', { useNewUrlParser: true, use
     console.error('Error connecting to MongoDB:', err);
   });
 
+// Middleware to parse JSON
+app.use(bodyParser.json());
+app.use(errorHandler);
+
+// Routes for ride-related requests
+app.use('/api/ride', rideRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 4000;
